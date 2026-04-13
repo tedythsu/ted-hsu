@@ -1,5 +1,10 @@
 import { ProjectFlip } from '@/components/ProjectFlip'
+import { PageTransition } from '@/components/PageTransition'
 
 export default function ProjectsPage() {
-  return <ProjectFlip />
+  return (
+    <PageTransition>
+      <ProjectFlip />
+    </PageTransition>
+  )
 }
