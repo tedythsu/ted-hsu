@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://tedythsu.vercel.app'),
   title: `${profile.name} — Frontend Engineer`,
   description: profile.seo.description,
   openGraph: {
