@@ -35,10 +35,7 @@ const timeline = [
 
 export function ResumeTimeline() {
   return (
-    <section className="max-w-3xl mx-auto px-6 py-20">
-      <p className="text-xs font-medium tracking-widest uppercase text-zinc-500 mb-10">
-        Experience
-      </p>
+    <section className="max-w-3xl mx-auto px-6 pt-10 pb-20">
       <div className="relative">
         <div className="absolute left-0 top-2 bottom-0 w-px bg-zinc-800" />
         <div className="space-y-10 pl-8">

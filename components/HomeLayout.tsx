@@ -7,6 +7,7 @@ import { Code2, Play, Download, ArrowUpRight, Briefcase } from 'lucide-react'
 import { profile } from '@/data/profile'
 import { videos } from '@/data/videos'
 import { projects } from '@/data/projects'
+import { ResumeTimeline } from '@/components/ResumeTimeline'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -123,11 +124,68 @@ export function HomeLayout() {
         </motion.div>
       </section>
 
-      {/* ── YouTube ── */}
+      {/* ── Projects ── */}
       <section className="px-8 md:px-16 py-16 border-t border-zinc-800/40">
         <div className="flex items-baseline justify-between mb-10">
           <div className="flex items-baseline gap-3">
             <span className="text-[10px] text-zinc-700 font-mono">01</span>
+            <span className="text-[11px] tracking-[0.22em] uppercase text-zinc-600">WebApps</span>
+          </div>
+          <Link
+            href="/projects"
+            className="flex items-center gap-1 text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
+          >
+            All projects <ArrowUpRight className="w-3 h-3" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <Link key={project.name} href="/projects" className="group">
+              <div className="relative aspect-video overflow-hidden mb-4 bg-zinc-900">
+                {project.screenshot && (
+                  <Image
+                    src={project.screenshot}
+                    alt={project.name}
+                    fill
+                    className="object-cover opacity-70 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
+                  />
+                )}
+              </div>
+              <p className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors mb-1">
+                {project.name}
+              </p>
+              {project.description && (
+                <p className="text-xs text-zinc-700 group-hover:text-zinc-600 transition-colors mb-2 leading-relaxed">
+                  {project.description}
+                </p>
+              )}
+              <div className="flex gap-3">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="text-xs text-zinc-700">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Experience ── */}
+      <section className="border-t border-zinc-800/40">
+        <div className="flex items-baseline gap-3 px-8 md:px-16 pt-16 mb-0">
+          <span className="text-[10px] text-zinc-700 font-mono">02</span>
+          <span className="text-[11px] tracking-[0.22em] uppercase text-zinc-600">Experience</span>
+        </div>
+        <ResumeTimeline />
+      </section>
+
+      {/* ── YouTube ── */}
+      <section className="px-8 md:px-16 py-16 border-t border-zinc-800/40">
+        <div className="flex items-baseline justify-between mb-10">
+          <div className="flex items-baseline gap-3">
+            <span className="text-[10px] text-zinc-700 font-mono">03</span>
             <span className="text-[11px] tracking-[0.22em] uppercase text-zinc-600">YouTube</span>
           </div>
           <Link
@@ -160,56 +218,6 @@ export function HomeLayout() {
               <p className="text-xs text-zinc-700 mt-1.5 group-hover:text-zinc-500 transition-colors">
                 Watch →
               </p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Projects ── */}
-      <section className="px-8 md:px-16 py-16 border-t border-zinc-800/40">
-        <div className="flex items-baseline justify-between mb-10">
-          <div className="flex items-baseline gap-3">
-            <span className="text-[10px] text-zinc-700 font-mono">02</span>
-            <span className="text-[11px] tracking-[0.22em] uppercase text-zinc-600">WebApps</span>
-          </div>
-          <Link
-            href="/projects"
-            className="flex items-center gap-1 text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
-          >
-            All projects <ArrowUpRight className="w-3 h-3" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link key={project.name} href="/projects" className="group">
-              {/* Screenshot */}
-              <div className="relative aspect-video overflow-hidden mb-4 bg-zinc-900">
-                {project.screenshot && (
-                  <Image
-                    src={project.screenshot}
-                    alt={project.name}
-                    fill
-                    className="object-cover opacity-70 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
-                  />
-                )}
-              </div>
-              {/* Info */}
-              <p className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors mb-1">
-                {project.name}
-              </p>
-              {project.description && (
-                <p className="text-xs text-zinc-700 group-hover:text-zinc-600 transition-colors mb-2 leading-relaxed">
-                  {project.description}
-                </p>
-              )}
-              <div className="flex gap-3">
-                {project.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-xs text-zinc-700">
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </Link>
           ))}
         </div>
