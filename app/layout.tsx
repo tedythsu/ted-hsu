@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, DM_Serif_Display } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
@@ -13,6 +13,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+})
+
+const dmSerif = DM_Serif_Display({
+  variable: '--font-dm-serif',
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
 })
 
 export const metadata: Metadata = {
@@ -33,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     // inline style prevents white flash before CSS loads
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} style={{ background: '#09090b' }}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${dmSerif.variable}`} style={{ background: '#09090b' }}>
       <body className="bg-zinc-950 text-zinc-100 antialiased">
         <Navbar />
         <main>{children}</main>

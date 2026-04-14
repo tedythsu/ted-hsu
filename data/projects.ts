@@ -10,8 +10,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     name: 'Atmos: Live Like a Pro',
-    url: 'https://tedythsu.github.io/atmos',
-    github: 'https://github.com/tedythsu/atmos',
+    url: 'https://tedythsu.github.io/sudoku',
+    github: 'https://github.com/tedythsu/sudoku',
     tags: ['Angular', 'TypeScript', 'AI'],
     screenshot: '/screenshots/atmos.png',
   },
