@@ -87,14 +87,16 @@ export function SiteHome() {
           <div className="space-y-0">
             {guides.map((guide, i) => (
               <motion.div
-                key={guide.slug}
+                key={guide.url}
                 custom={i}
                 initial="hidden"
                 animate="visible"
                 variants={fadeIn}
               >
                 <Link
-                  href={guide.ready ? `/guides/${guide.slug}` : '/guides'}
+                  href={guide.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex gap-5 py-5 border-b border-zinc-800/30 hover:border-zinc-700/40 transition-colors"
                 >
                   {/* Index number */}
@@ -103,14 +105,12 @@ export function SiteHome() {
                   </span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3 mb-1.5">
-                      <p className={`text-sm transition-colors leading-snug ${guide.ready ? 'text-zinc-200 group-hover:text-white' : 'text-zinc-400'}`}>
+                      <p className="text-sm transition-colors leading-snug text-zinc-200 group-hover:text-white">
                         {guide.title}
                       </p>
-                      {!guide.ready && (
-                        <span className="text-[10px] text-zinc-500 border border-zinc-700 rounded px-1.5 py-0.5 flex-shrink-0">
-                          準備中
-                        </span>
-                      )}
+                      <span className="text-[10px] text-zinc-600 bg-zinc-900/50 rounded px-1.5 py-0.5 flex-shrink-0">
+                        {guide.source}
+                      </span>
                     </div>
                     <p className="text-xs text-zinc-500 leading-relaxed line-clamp-2">{guide.summary}</p>
                     <p className={`text-[10px] mt-2 ${categoryColor[guide.category] ?? 'text-zinc-700'}`}>

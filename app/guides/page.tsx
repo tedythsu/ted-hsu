@@ -29,22 +29,22 @@ export default function GuidesPage() {
             <div>
               {guides.filter((g) => g.category === cat).map((guide) => (
                 <Link
-                  key={guide.slug}
-                  href={guide.ready ? `/guides/${guide.slug}` : '#'}
-                  className={`group flex items-center justify-between py-5 border-b border-zinc-800/40 transition-colors ${guide.ready ? 'hover:border-zinc-700/50' : 'cursor-default'}`}
+                  key={guide.url}
+                  href={guide.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between py-5 border-b border-zinc-800/40 transition-colors hover:border-zinc-700/50"
                 >
                   <div>
-                    <p className={`text-sm mb-1 transition-colors ${guide.ready ? 'text-zinc-400 group-hover:text-zinc-200' : 'text-zinc-600'}`}>
+                    <p className="text-sm mb-1 transition-colors text-zinc-400 group-hover:text-zinc-200">
                       {guide.title}
                     </p>
                     <p className="text-xs text-zinc-700 leading-relaxed max-w-lg">{guide.summary}</p>
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                    {!guide.ready && (
-                      <span className="text-[10px] text-zinc-800 border border-zinc-800 rounded px-2 py-0.5">
-                        準備中
-                      </span>
-                    )}
+                    <span className="text-[10px] text-zinc-700 bg-zinc-900/50 rounded px-2 py-0.5">
+                      {guide.source}
+                    </span>
                     <span className="text-xs text-zinc-800">{guide.updatedAt}</span>
                   </div>
                 </Link>
