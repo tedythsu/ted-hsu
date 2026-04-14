@@ -5,6 +5,7 @@ export const site = {
   description: '燕雲十六聲（Where Winds Meet）官方消息、攻略、社群討論整合資訊站。',
   url: 'https://wwm-guide.vercel.app',
   youtube: 'https://www.youtube.com/@WhereWindsMeetHMT',
+  myYoutube: 'https://www.youtube.com/@TedHsu-v6s',
   facebook: 'https://www.facebook.com/WhereWindsMeetHMT/',
   bahamutBsn: '75703',
   ogImage: '/og-image.png',

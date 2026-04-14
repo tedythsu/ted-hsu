@@ -31,6 +31,8 @@ export function SiteHome() {
   const [postsLoading, setPostsLoading] = useState(true)
   const [videos, setVideos] = useState<YTVideo[]>([])
   const [videosLoading, setVideosLoading] = useState(true)
+  const [myVideos, setMyVideos] = useState<YTVideo[]>([])
+  const [myVideosLoading, setMyVideosLoading] = useState(true)
   const [news, setNews] = useState<NewsItem[]>([])
   const [newsLoading, setNewsLoading] = useState(true)
   const dateStr = useDateString()
@@ -44,6 +46,10 @@ export function SiteHome() {
       .then((r) => r.json())
       .then((d) => { setVideos(d); setVideosLoading(false) })
       .catch(() => setVideosLoading(false))
+    fetch('/api/my-youtube')
+      .then((r) => r.json())
+      .then((d) => { setMyVideos(d); setMyVideosLoading(false) })
+      .catch(() => setMyVideosLoading(false))
     fetch('/api/news')
       .then((r) => r.json())
       .then((d) => { setNews(d); setNewsLoading(false) })
@@ -163,12 +169,67 @@ export function SiteHome() {
               </a>
             ))}
           </div>
+
+          {/* Personal YouTube */}
+          {(myVideosLoading || myVideos.length > 0) && (
+            <div className="mt-10">
+              <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-6 flex items-center gap-3">
+                <span className="font-mono">03</span> 我的 YouTube
+                <a
+                  href={site.myYoutube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-auto text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1 normal-case"
+                >
+                  前往頻道 <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </p>
+              {myVideosLoading && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {[...Array(2)].map((_, i) => (
+                    <div key={i} className="space-y-3">
+                      <div className="aspect-video bg-zinc-900 animate-pulse rounded" />
+                      <div className="h-3 bg-zinc-900 rounded animate-pulse w-3/4" />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {myVideos.slice(0, 2).map((video) => (
+                  <a
+                    key={video.id}
+                    href={video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                  >
+                    <div className="relative aspect-video overflow-hidden mb-3 bg-zinc-900">
+                      <Image
+                        src={video.thumbnail}
+                        alt={video.title}
+                        fill
+                        className="object-cover opacity-40 group-hover:opacity-65 group-hover:scale-[1.02] transition-all duration-500"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
+                          <Play className="w-3 h-3 text-white/70 ml-0.5" />
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-zinc-400 group-hover:text-zinc-200 transition-colors leading-snug">
+                      {video.title}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Right: Live Bahamut (1/3) */}
         <div className="md:col-span-1 pt-10 md:pt-0">
           <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-6 flex items-center gap-3">
-            <span className="font-mono">03</span> 巴哈 即時討論
+            <span className="font-mono">04</span> 巴哈 即時討論
             <a
               href={`https://forum.gamer.com.tw/B.php?bsn=${site.bahamutBsn}`}
               target="_blank"

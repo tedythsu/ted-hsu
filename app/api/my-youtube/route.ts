@@ -1,20 +1,12 @@
-// app/api/youtube/route.ts
 import { NextResponse } from 'next/server'
 import { XMLParser } from 'fast-xml-parser'
 import { unstable_cache } from 'next/cache'
+import type { YTVideo } from '@/app/api/youtube/route'
 
-export interface YTVideo {
-  id: string
-  title: string
-  thumbnail: string
-  publishedAt: string
-  url: string
-}
+// Channel ID for @TedHsu-v6s (personal channel)
+const CHANNEL_ID = 'UCERpZtzSBEfkQDQx5e8QbxA'
 
-// Channel ID for @WhereWindsMeetHMT (official 燕雲十六聲 channel)
-const CHANNEL_ID = 'UCIg76vZz1n2iITdQARIxxsQ'
-
-const fetchYTVideos = unstable_cache(
+const fetchMyVideos = unstable_cache(
   async (): Promise<YTVideo[]> => {
     const res = await fetch(
       `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`,
@@ -32,7 +24,7 @@ const fetchYTVideos = unstable_cache(
     const entries = parsed?.feed?.entry ?? []
     const arr = Array.isArray(entries) ? entries : [entries]
 
-    return arr.slice(0, 6).map((entry: Record<string, unknown>) => {
+    return arr.slice(0, 4).map((entry: Record<string, unknown>) => {
       const id = String(entry['yt:videoId'] ?? '').trim()
       return {
         id,
@@ -43,11 +35,11 @@ const fetchYTVideos = unstable_cache(
       }
     })
   },
-  ['yt-videos'],
+  ['my-yt-videos'],
   { revalidate: 1800 }
 )
 
 export async function GET() {
-  const videos = await fetchYTVideos()
+  const videos = await fetchMyVideos()
   return NextResponse.json(videos)
 }
