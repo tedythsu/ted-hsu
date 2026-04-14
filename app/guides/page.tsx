@@ -1,6 +1,7 @@
-import Link from 'next/link'
+// app/guides/page.tsx
 import { guides } from '@/data/guides'
 import { PageTransition } from '@/components/PageTransition'
+import { ArrowUpRight } from 'lucide-react'
 
 const categoryColor: Record<string, string> = {
   '新手入門': 'text-amber-600',
@@ -16,10 +17,17 @@ export default function GuidesPage() {
   return (
     <PageTransition>
       <div className="px-8 md:px-16 pt-24 pb-20">
-        <p className="text-[11px] tracking-[0.22em] uppercase text-zinc-600 mb-4">攻略指南</p>
-        <h1 className="font-[family-name:var(--font-dm-serif)] italic text-white text-5xl md:text-7xl leading-none mb-16">
+        <p className="text-[11px] tracking-[0.22em] uppercase text-zinc-600 mb-4">精選攻略</p>
+        <h1 className="font-[family-name:var(--font-dm-serif)] italic text-white text-5xl md:text-7xl leading-none mb-4">
           Guides
         </h1>
+        <a
+          href="https://forum.gamer.com.tw/B.php?bsn=75703"
+          target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-zinc-600 hover:text-zinc-400 transition-colors mb-16"
+        >
+          前往巴哈姆特板塊 <ArrowUpRight className="w-3 h-3" />
+        </a>
 
         {categories.map((cat) => (
           <div key={cat} className="mb-14">
@@ -28,26 +36,27 @@ export default function GuidesPage() {
             </p>
             <div>
               {guides.filter((g) => g.category === cat).map((guide) => (
-                <Link
-                  key={guide.url}
+                <a
+                  key={guide.title}
                   href={guide.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between py-5 border-b border-zinc-800/40 transition-colors hover:border-zinc-700/50"
+                  className="group flex items-center justify-between py-5 border-b border-zinc-800/40 hover:border-zinc-700/50 transition-colors"
                 >
                   <div>
-                    <p className="text-sm mb-1 transition-colors text-zinc-400 group-hover:text-zinc-200">
+                    <p className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors mb-1">
                       {guide.title}
                     </p>
                     <p className="text-xs text-zinc-700 leading-relaxed max-w-lg">{guide.summary}</p>
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                    <span className="text-[10px] text-zinc-700 bg-zinc-900/50 rounded px-2 py-0.5">
+                    <span className="text-[10px] text-zinc-700 border border-zinc-800 rounded px-2 py-0.5">
                       {guide.source}
                     </span>
                     <span className="text-xs text-zinc-800">{guide.updatedAt}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-zinc-700 group-hover:text-zinc-500 transition-colors" />
                   </div>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
