@@ -8,6 +8,7 @@ import { profile } from '@/data/profile'
 import { videos } from '@/data/videos'
 import { projects } from '@/data/projects'
 import { ResumeTimeline } from '@/components/ResumeTimeline'
+import { GitHubSection } from '@/components/GitHubSection'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -222,6 +223,8 @@ export function HomeLayout() {
           ))}
         </div>
       </section>
+
+      <GitHubSection />
     </div>
   )
 }
