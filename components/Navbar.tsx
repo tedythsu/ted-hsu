@@ -4,9 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const links = [
-  { href: '/', label: 'Home' },
+  { href: '/', label: '首頁' },
+  { href: '/guides', label: '攻略' },
+  { href: '/community', label: '社群' },
   { href: '/youtube', label: 'YouTube' },
-  { href: '/projects', label: 'Projects' },
 ]
 
 export function Navbar() {
@@ -31,7 +32,7 @@ export function Navbar() {
     >
       <nav className="flex items-center justify-between px-6 h-14 bg-zinc-950/80 backdrop-blur-sm border-b border-zinc-900">
         <Link href="/" className="text-sm font-medium text-white tracking-tight">
-          Ted Hsu
+          WWM Guide
         </Link>
         <div className="flex items-center gap-6">
           {links.map(({ href, label }) => (
@@ -39,7 +40,7 @@ export function Navbar() {
               key={href}
               href={href}
               className={`text-sm transition-colors ${
-                pathname === href
+                pathname === href || (href !== '/' && pathname.startsWith(href))
                   ? 'text-white'
                   : 'text-zinc-500 hover:text-zinc-300'
               }`}
