@@ -11,11 +11,11 @@ import { videos } from '@/data/videos'
 import type { BahaPost } from '@/app/api/bahamut/route'
 
 const categoryColor: Record<string, string> = {
-  '新手入門': 'text-amber-600',
-  '角色':    'text-sky-600',
-  '副本':    'text-rose-600',
-  '系統':    'text-emerald-600',
-  '進階':    'text-purple-600',
+  '新手入門': 'text-amber-500',
+  '角色':    'text-sky-400',
+  '副本':    'text-rose-400',
+  '系統':    'text-emerald-400',
+  '進階':    'text-purple-400',
 }
 
 const categories = [...new Set(guides.map((g) => g.category))]
@@ -54,23 +54,23 @@ export function SiteHome() {
       {/* ── Masthead ── */}
       <div className="px-8 md:px-16 py-3 flex items-center justify-between border-b border-zinc-800/60">
         <span className="text-xs font-medium text-zinc-300 tracking-wide">WWM Guide</span>
-        <span className="text-xs text-zinc-600 hidden md:block">燕雲十六聲 攻略資訊站</span>
-        <span className="text-[11px] text-zinc-700 font-mono">{dateStr}</span>
+        <span className="text-xs text-zinc-400 hidden md:block">燕雲十六聲 攻略資訊站</span>
+        <span className="text-[11px] text-zinc-500 font-mono">{dateStr}</span>
       </div>
 
       {/* ── Category strip ── */}
       <div className="px-8 md:px-16 py-3 flex items-center gap-6 border-b border-zinc-800/40 overflow-x-auto">
-        <span className="text-[10px] text-zinc-700 uppercase tracking-widest flex-shrink-0">攻略分類</span>
+        <span className="text-[10px] text-zinc-500 uppercase tracking-widest flex-shrink-0">攻略分類</span>
         {categories.map((cat) => (
           <Link
             key={cat}
             href="/guides"
-            className={`text-xs flex-shrink-0 transition-colors hover:text-white ${categoryColor[cat] ?? 'text-zinc-600'}`}
+            className={`text-xs flex-shrink-0 transition-colors hover:text-white ${categoryColor[cat] ?? 'text-zinc-400'}`}
           >
             {cat}
           </Link>
         ))}
-        <Link href="/guides" className="text-xs text-zinc-700 hover:text-zinc-400 transition-colors ml-auto flex-shrink-0 flex items-center gap-1">
+        <Link href="/guides" className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors ml-auto flex-shrink-0 flex items-center gap-1">
           全部 <ArrowUpRight className="w-3 h-3" />
         </Link>
       </div>
@@ -80,7 +80,7 @@ export function SiteHome() {
 
         {/* Left: Guides (2/3) */}
         <div className="md:col-span-2 border-b md:border-b-0 md:border-r border-zinc-800/40 pb-10 md:pb-0 md:pr-10">
-          <p className="text-[10px] text-zinc-700 uppercase tracking-widest mb-6 flex items-center gap-3">
+          <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-6 flex items-center gap-3">
             <span className="font-mono">01</span> 攻略指南
           </p>
 
@@ -98,21 +98,21 @@ export function SiteHome() {
                   className="group flex gap-5 py-5 border-b border-zinc-800/30 hover:border-zinc-700/40 transition-colors"
                 >
                   {/* Index number */}
-                  <span className="text-[11px] text-zinc-800 font-mono w-5 flex-shrink-0 pt-0.5">
+                  <span className="text-[11px] text-zinc-600 font-mono w-5 flex-shrink-0 pt-0.5">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3 mb-1.5">
-                      <p className={`text-sm transition-colors leading-snug ${guide.ready ? 'text-zinc-300 group-hover:text-white' : 'text-zinc-600'}`}>
+                      <p className={`text-sm transition-colors leading-snug ${guide.ready ? 'text-zinc-200 group-hover:text-white' : 'text-zinc-400'}`}>
                         {guide.title}
                       </p>
                       {!guide.ready && (
-                        <span className="text-[10px] text-zinc-800 border border-zinc-800 rounded px-1.5 py-0.5 flex-shrink-0">
+                        <span className="text-[10px] text-zinc-500 border border-zinc-700 rounded px-1.5 py-0.5 flex-shrink-0">
                           準備中
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-zinc-700 leading-relaxed line-clamp-2">{guide.summary}</p>
+                    <p className="text-xs text-zinc-500 leading-relaxed line-clamp-2">{guide.summary}</p>
                     <p className={`text-[10px] mt-2 ${categoryColor[guide.category] ?? 'text-zinc-700'}`}>
                       {guide.category}
                     </p>
@@ -124,12 +124,12 @@ export function SiteHome() {
 
           {/* YouTube — inside left col on desktop */}
           <div className="mt-12">
-            <p className="text-[10px] text-zinc-700 uppercase tracking-widest mb-6 flex items-center gap-3">
+            <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-6 flex items-center gap-3">
               <span className="font-mono">03</span> YouTube 影片
               <a
                 href={site.youtube}
                 target="_blank" rel="noopener noreferrer"
-                className="ml-auto text-zinc-700 hover:text-zinc-400 transition-colors flex items-center gap-1 normal-case"
+                className="ml-auto text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1 normal-case"
               >
                 前往頻道 <ArrowUpRight className="w-3 h-3" />
               </a>
@@ -150,7 +150,7 @@ export function SiteHome() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors leading-snug">
+                  <p className="text-xs text-zinc-400 group-hover:text-zinc-200 transition-colors leading-snug">
                     {video.title}
                   </p>
                 </Link>
@@ -161,12 +161,12 @@ export function SiteHome() {
 
         {/* Right: Live Bahamut (1/3) */}
         <div className="md:col-span-1 pt-10 md:pt-0">
-          <p className="text-[10px] text-zinc-700 uppercase tracking-widest mb-6 flex items-center gap-3">
+          <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-6 flex items-center gap-3">
             <span className="font-mono">02</span> 巴哈 即時討論
             <a
               href={`https://forum.gamer.com.tw/B.php?bsn=${site.bahamutBsn}`}
               target="_blank" rel="noopener noreferrer"
-              className="ml-auto text-zinc-700 hover:text-zinc-400 transition-colors flex items-center gap-1 normal-case"
+              className="ml-auto text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1 normal-case"
             >
               板塊 <ArrowUpRight className="w-3 h-3" />
             </a>
@@ -181,7 +181,7 @@ export function SiteHome() {
           )}
 
           {!postsLoading && posts.length === 0 && (
-            <p className="text-xs text-zinc-700">暫時無法取得資料</p>
+            <p className="text-xs text-zinc-500">暫時無法取得資料</p>
           )}
 
           <div className="space-y-0">
@@ -196,18 +196,18 @@ export function SiteHome() {
                 target="_blank" rel="noopener noreferrer"
                 className="group flex items-start gap-3 py-3.5 border-b border-zinc-800/30 hover:border-zinc-700/40 transition-colors"
               >
-                <span className="text-[10px] text-zinc-800 font-mono flex-shrink-0 pt-0.5 w-4">
+                <span className="text-[10px] text-zinc-600 font-mono flex-shrink-0 pt-0.5 w-4">
                   {i + 1}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors leading-snug">
+                  <p className="text-xs text-zinc-400 group-hover:text-zinc-200 transition-colors leading-snug">
                     {post.title}
                   </p>
                   {post.author && (
-                    <p className="text-[10px] text-zinc-800 mt-1">{post.author}</p>
+                    <p className="text-[10px] text-zinc-600 mt-1">{post.author}</p>
                   )}
                 </div>
-                <ArrowUpRight className="w-3 h-3 text-zinc-800 group-hover:text-zinc-600 transition-colors flex-shrink-0 mt-0.5" />
+                <ArrowUpRight className="w-3 h-3 text-zinc-600 group-hover:text-zinc-400 transition-colors flex-shrink-0 mt-0.5" />
               </motion.a>
             ))}
           </div>
@@ -217,12 +217,12 @@ export function SiteHome() {
             <a
               href={site.facebook}
               target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-between text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
+              className="flex items-center justify-between text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
             >
               <span>官方 Facebook 粉專</span>
               <ArrowUpRight className="w-3 h-3" />
             </a>
-            <p className="text-[10px] text-zinc-800 mt-1">@WhereWindsMeetHMT</p>
+            <p className="text-[10px] text-zinc-600 mt-1">@WhereWindsMeetHMT</p>
           </div>
         </div>
       </div>
