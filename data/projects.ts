@@ -32,20 +32,4 @@ export const projects: Project[] = [
     tags: ['Angular 16', 'TypeScript'],
     screenshot: '/screenshots/slot-game.png',
   },
-  {
-    name: 'Tea Brand Website',
-    description: 'A brand image website for a tea company, built as an Angular practice project.',
-    url: 'https://tedythsu.github.io/good-fun-tea-angular/',
-    github: 'https://github.com/tedythsu/good-fun-tea-angular',
-    tags: ['Angular 14', 'TypeScript'],
-    screenshot: '/screenshots/tea-brand.png',
-  },
-  {
-    name: 'CVE Report Generator',
-    description: 'A Bash tool that automates third-party dependency CVE detection and generates reports.',
-    url: 'https://github.com/tedythsu/cve-report-generator',
-    github: 'https://github.com/tedythsu/cve-report-generator',
-    tags: ['Bash', 'Security', 'DevOps'],
-    screenshot: '',
-  },
 ]

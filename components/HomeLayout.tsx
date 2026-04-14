@@ -180,28 +180,35 @@ export function HomeLayout() {
           </Link>
         </div>
 
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <Link key={project.name} href="/projects">
-              <div className="group flex items-center justify-between py-5 border-b border-zinc-800/40 hover:border-zinc-700/50 transition-colors">
-                <div>
-                  <p className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors mb-1">
-                    {project.name}
-                  </p>
-                  {project.description && (
-                    <p className="text-xs text-zinc-700 group-hover:text-zinc-600 transition-colors mb-2 max-w-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                  )}
-                  <div className="flex gap-4">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span key={tag} className="text-xs text-zinc-700">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-zinc-800 group-hover:text-zinc-500 transition-colors flex-shrink-0" />
+            <Link key={project.name} href="/projects" className="group">
+              {/* Screenshot */}
+              <div className="relative aspect-video overflow-hidden mb-4 bg-zinc-900">
+                {project.screenshot && (
+                  <Image
+                    src={project.screenshot}
+                    alt={project.name}
+                    fill
+                    className="object-cover opacity-70 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
+                  />
+                )}
+              </div>
+              {/* Info */}
+              <p className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors mb-1">
+                {project.name}
+              </p>
+              {project.description && (
+                <p className="text-xs text-zinc-700 group-hover:text-zinc-600 transition-colors mb-2 leading-relaxed">
+                  {project.description}
+                </p>
+              )}
+              <div className="flex gap-3">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="text-xs text-zinc-700">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </Link>
           ))}
