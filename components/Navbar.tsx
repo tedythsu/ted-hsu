@@ -7,7 +7,6 @@ const links = [
   { href: '/', label: '首頁' },
   { href: '/guides', label: '攻略' },
   { href: '/community', label: '社群' },
-  { href: '/youtube', label: 'YouTube' },
 ]
 
 export function Navbar() {
