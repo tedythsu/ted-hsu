@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Code2, Play, Download, ArrowUpRight } from 'lucide-react'
+import { Code2, Play, Download, ArrowUpRight, Briefcase } from 'lucide-react'
 import { profile } from '@/data/profile'
 import { videos } from '@/data/videos'
 import { projects } from '@/data/projects'
@@ -101,6 +101,15 @@ export function HomeLayout() {
             >
               <Play className="w-3.5 h-3.5" />
               YouTube
+            </a>
+            <a
+              href={profile.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs text-zinc-600 hover:text-zinc-300 transition-colors"
+            >
+              <Briefcase className="w-3.5 h-3.5" />
+              LinkedIn
             </a>
             <a
               href={profile.resumeUrl}

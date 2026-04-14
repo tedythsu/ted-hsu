@@ -1,21 +1,37 @@
 const timeline = [
   {
-    role: 'Senior Frontend Engineer',
-    company: 'Your Current Company',
-    period: '2023 — Present',
-    description: 'Angular architecture, TypeScript, AI tool integration.',
-    tags: ['Angular', 'TypeScript', 'RxJS', 'AI Tools'],
+    role: 'Frontend Engineer',
+    company: 'NEUTEC',
+    period: '2024 — Present',
+    description:
+      'Frontend development for financial industry systems using Angular. Collaborate with designers and backend engineers to deliver UI/UX features, integrate APIs, and maintain page performance.',
+    tags: ['Angular', 'TypeScript', 'RxJS'],
   },
   {
-    role: 'Frontend Developer',
-    company: 'Previous Company',
-    period: '2021 — 2023',
-    description: 'Built scalable enterprise web applications.',
-    tags: ['Angular', 'TypeScript', 'JavaScript'],
+    role: 'Frontend Engineer',
+    company: '三竹資訊 (Mitake)',
+    period: '2023 — 2024',
+    description:
+      'Responsible for mobile web and RWD projects. Implemented features from design blueprints, integrated backend APIs, and wrote unit tests using Jasmine.',
+    tags: ['Angular', 'RxJS', 'TypeScript', 'Jasmine'],
+  },
+  {
+    role: 'Software Engineer',
+    company: 'Wistron ITS (WITS)',
+    period: '2022 — 2023',
+    description:
+      'Led frontend development for internal system renovation projects using Angular. Supported backend API development in C# and coordinated with product owners and UI/UX designers.',
+    tags: ['Angular', 'TypeScript', 'C#'],
+  },
+  {
+    role: 'IT Specialist',
+    company: 'Dimerco Express Group',
+    period: '2021 — 2022',
+    description:
+      'Built internal web tools with PHP for data access and reporting. Developed VBS scripts and RPA workflows to automate SAP operations and reduce repetitive tasks.',
+    tags: ['PHP', 'VBS', 'RPA', 'SAP'],
   },
 ]
-
-// Update timeline with your real work history
 
 export function ResumeTimeline() {
   return (
