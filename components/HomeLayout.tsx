@@ -185,9 +185,14 @@ export function HomeLayout() {
             <Link key={project.name} href="/projects">
               <div className="group flex items-center justify-between py-5 border-b border-zinc-800/40 hover:border-zinc-700/50 transition-colors">
                 <div>
-                  <p className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors mb-2">
+                  <p className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors mb-1">
                     {project.name}
                   </p>
+                  {project.description && (
+                    <p className="text-xs text-zinc-700 group-hover:text-zinc-600 transition-colors mb-2 max-w-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                  )}
                   <div className="flex gap-4">
                     {project.tags.slice(0, 3).map((tag) => (
                       <span key={tag} className="text-xs text-zinc-700">

@@ -50,11 +50,16 @@ export function ProjectFlip() {
       </div>
 
       {/* Project name + tags overlay */}
-      <div className="absolute top-[66px] left-4 z-20 pointer-events-none">
+      <div className="absolute top-[66px] left-4 z-20 pointer-events-none max-w-xs">
         <h2 className="text-white font-semibold text-sm bg-zinc-950/70 backdrop-blur-sm px-2 py-1 rounded">
           {project.name}
         </h2>
-        <div className="flex gap-1 mt-1">
+        {project.description && (
+          <p className="text-xs text-zinc-400 bg-zinc-950/70 backdrop-blur-sm px-2 py-1 mt-1 rounded leading-relaxed">
+            {project.description}
+          </p>
+        )}
+        <div className="flex gap-1 mt-1 flex-wrap">
           {project.tags.map((tag) => (
             <span
               key={tag}
