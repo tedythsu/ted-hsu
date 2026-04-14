@@ -140,8 +140,8 @@ export function HomeLayout() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link key={project.name} href="/projects" className="group">
+          {projects.map((project, i) => (
+            <Link key={project.name} href={`/projects?i=${i}`} className="group">
               <div className="relative aspect-video overflow-hidden mb-4 bg-zinc-900">
                 {project.screenshot && (
                   <Image

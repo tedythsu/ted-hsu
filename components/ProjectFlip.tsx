@@ -1,11 +1,17 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Code2 } from 'lucide-react'
 import { projects } from '@/data/projects'
 
 export function ProjectFlip() {
-  const [index, setIndex] = useState(0)
+  const searchParams = useSearchParams()
+  const initialIndex = Math.min(
+    Math.max(Number(searchParams.get('i') ?? 0), 0),
+    projects.length - 1
+  )
+  const [index, setIndex] = useState(initialIndex)
   const [direction, setDirection] = useState(0)
 
   const go = (dir: -1 | 1) => {
