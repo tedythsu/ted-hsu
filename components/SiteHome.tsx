@@ -171,8 +171,7 @@ export function SiteHome() {
           </div>
 
           {/* Personal YouTube */}
-          {(myVideosLoading || myVideos.length > 0) && (
-            <div className="mt-10">
+          <div className="mt-10">
               <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-6 flex items-center gap-3">
                 <span className="font-mono">03</span> 我的 YouTube
                 <a
@@ -193,6 +192,9 @@ export function SiteHome() {
                     </div>
                   ))}
                 </div>
+              )}
+              {!myVideosLoading && myVideos.length === 0 && (
+                <p className="text-xs text-zinc-500">暫時無法取得影片</p>
               )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {myVideos.slice(0, 2).map((video) => (
@@ -222,8 +224,7 @@ export function SiteHome() {
                   </a>
                 ))}
               </div>
-            </div>
-          )}
+          </div>
         </div>
 
         {/* Right: Live Bahamut (1/3) */}

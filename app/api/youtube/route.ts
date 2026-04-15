@@ -1,7 +1,6 @@
 // app/api/youtube/route.ts
 import { NextResponse } from 'next/server'
 import { XMLParser } from 'fast-xml-parser'
-import { unstable_cache } from 'next/cache'
 
 export interface YTVideo {
   id: string
@@ -14,13 +13,13 @@ export interface YTVideo {
 // Channel ID for @WhereWindsMeetHMT (official 燕雲十六聲 channel)
 const CHANNEL_ID = 'UCIg76vZz1n2iITdQARIxxsQ'
 
-const fetchYTVideos = unstable_cache(
-  async (): Promise<YTVideo[]> => {
+async function fetchYTVideos(): Promise<YTVideo[]> {
+  try {
     const res = await fetch(
       `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`,
       {
         headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WWMGuide/1.0)' },
-        signal: AbortSignal.timeout(8000),
+        next: { revalidate: 1800 },
       }
     )
     if (!res.ok) return []
@@ -42,10 +41,10 @@ const fetchYTVideos = unstable_cache(
         url: `https://www.youtube.com/watch?v=${id}`,
       }
     })
-  },
-  ['yt-videos'],
-  { revalidate: 1800 }
-)
+  } catch {
+    return []
+  }
+}
 
 export async function GET() {
   const videos = await fetchYTVideos()

@@ -1,18 +1,17 @@
 import { NextResponse } from 'next/server'
 import { XMLParser } from 'fast-xml-parser'
-import { unstable_cache } from 'next/cache'
 import type { YTVideo } from '@/app/api/youtube/route'
 
 // Channel ID for @TedHsu-v6s (personal channel)
 const CHANNEL_ID = 'UCERpZtzSBEfkQDQx5e8QbxA'
 
-const fetchMyVideos = unstable_cache(
-  async (): Promise<YTVideo[]> => {
+async function fetchMyVideos(): Promise<YTVideo[]> {
+  try {
     const res = await fetch(
       `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`,
       {
         headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WWMGuide/1.0)' },
-        signal: AbortSignal.timeout(8000),
+        next: { revalidate: 1800 },
       }
     )
     if (!res.ok) return []
@@ -34,10 +33,10 @@ const fetchMyVideos = unstable_cache(
         url: `https://www.youtube.com/watch?v=${id}`,
       }
     })
-  },
-  ['my-yt-videos'],
-  { revalidate: 1800 }
-)
+  } catch {
+    return []
+  }
+}
 
 export async function GET() {
   const videos = await fetchMyVideos()
